@@ -6,6 +6,7 @@ export default function InputForm({ onSubmit, isLoading }) {
   const [industry, setIndustry] = useState("");
   const [budget, setBudget] = useState("");
   const [selectedObjectives, setSelectedObjectives] = useState([]);
+  const [additionalContext, setAdditionalContext] = useState("");
 
   const toggleObjective = (obj) => {
     setSelectedObjectives((prev) =>
@@ -21,6 +22,7 @@ export default function InputForm({ onSubmit, isLoading }) {
       industry,
       budget: parseFloat(budget),
       objectives: selectedObjectives,
+      additionalContext,
     });
   };
 
@@ -97,6 +99,17 @@ export default function InputForm({ onSubmit, isLoading }) {
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="form-group context-group">
+        <label htmlFor="context">Additional Context (optional)</label>
+        <textarea
+          id="context"
+          value={additionalContext}
+          onChange={(e) => setAdditionalContext(e.target.value)}
+          placeholder="e.g., Looking for targets with strong recurring revenue in the Southeast US. Prefer companies with less than 500 employees. We want to expand our AI capabilities and reduce client concentration risk."
+          rows={4}
+        />
       </div>
 
       <button

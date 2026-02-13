@@ -20,7 +20,8 @@ function App() {
         formData.acquirerName,
         formData.budget,
         formData.objectives,
-        formData.industry
+        formData.industry,
+        formData.additionalContext
       );
       setTargets(results);
       setStep("results");

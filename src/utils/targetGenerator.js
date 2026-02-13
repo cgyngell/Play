@@ -429,11 +429,11 @@ function generateRationale(target, objectives, acquirerName) {
 // MAIN EXPORTS
 // ============================================================
 
-export function generateTargets(acquirerName, budget, objectives, industry) {
+export function generateTargets(acquirerName, budget, objectives, industry, additionalContext = "") {
   const profile = INDUSTRY_PROFILES[industry];
   if (!profile) return [];
 
-  const seed = hashString(acquirerName + industry + budget.toString() + objectives.join(","));
+  const seed = hashString(acquirerName + industry + budget.toString() + objectives.join(",") + additionalContext);
   const rng = seededRandom(seed);
 
   // Generate a pool of 12 candidates, score, and return top 5
@@ -462,11 +462,16 @@ export function generateTargets(acquirerName, budget, objectives, industry) {
     const synergies = generateSynergies(target, objectives);
     const rationale = generateRationale(target, objectives, acquirerName);
 
+    if (additionalContext.trim()) {
+      rationale.push(`Additional acquisition context: ${additionalContext.trim()}`);
+    }
+
     return {
       ...target,
       financials,
       synergies,
       rationale,
+      additionalContext: additionalContext.trim(),
       fitScore: Math.min(Math.round((target.score / 60) * 100), 98),
     };
   });

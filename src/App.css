@@ -220,7 +220,35 @@
 }
 
 .objectives-group {
+  margin-bottom: 1.5rem;
+}
+
+.context-group {
   margin-bottom: 2rem;
+}
+
+.context-group textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  line-height: 1.5;
+  width: 100%;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.context-group textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.context-group textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .objectives-grid {
@@ -656,6 +684,30 @@
   height: 5px;
   background: var(--gold);
   border-radius: 50%;
+}
+
+.context-note {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--radius);
+}
+
+.context-note h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue-light);
+  margin-bottom: 0.5rem;
+}
+
+.context-note p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 /* Financial Tables */

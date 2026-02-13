@@ -68,6 +68,12 @@ export default function FinancialModel({ target, acquirerName, onBack }) {
             </ul>
           </div>
         </div>
+        {target.additionalContext && (
+          <div className="context-note">
+            <h4>Acquirer-Specified Considerations</h4>
+            <p>{target.additionalContext}</p>
+          </div>
+        )}
       </section>
 
       {/* Income Statement */}
