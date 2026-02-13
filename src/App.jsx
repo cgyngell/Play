@@ -19,7 +19,8 @@ function App() {
       const results = generateTargets(
         formData.acquirerName,
         formData.budget,
-        formData.objectives
+        formData.objectives,
+        formData.industry
       );
       setTargets(results);
       setStep("results");
@@ -55,7 +56,7 @@ function App() {
             <div className="logo-icon">M&A</div>
             <div>
               <h1>Investment Opportunity Tracker</h1>
-              <p className="tagline">Management Consulting M&A Advisory Platform</p>
+              <p className="tagline">M&A Advisory Platform</p>
             </div>
           </div>
           {step !== "input" && (

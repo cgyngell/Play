@@ -1,235 +1,242 @@
-const CONSULTING_TARGETS = [
-  {
-    name: "Meridian Strategy Partners",
-    sector: "Strategy Consulting",
-    description: "Mid-market strategy consulting firm specializing in digital transformation and operational excellence for Fortune 500 clients.",
-    employees: 1200,
-    founded: 2008,
-    hq: "Chicago, IL",
-    clients: "Fortune 500, Private Equity portfolio companies",
-    revenueBase: 280,
-    ebitdaMargin: 0.18,
-    growthRate: 0.12,
-    strengths: ["Digital transformation practice", "Strong PE relationships", "Proprietary analytics platform"],
-    tags: ["strategy", "digital", "operations", "ebitda_growth", "revenue_synergies"],
-  },
-  {
-    name: "Apex Human Capital Advisors",
-    sector: "HR & Organizational Consulting",
-    description: "Specialized human capital and organizational design consultancy with deep expertise in post-merger integration and workforce planning.",
-    employees: 650,
-    founded: 2012,
-    hq: "New York, NY",
-    clients: "Mid-market companies, Healthcare systems",
-    revenueBase: 145,
-    ebitdaMargin: 0.22,
-    growthRate: 0.15,
-    strengths: ["Post-merger integration expertise", "Workforce analytics tools", "Healthcare vertical depth"],
-    tags: ["hr", "integration", "cost_synergies", "operations", "ebitda_growth"],
-  },
-  {
-    name: "ClearPoint Analytics Group",
-    sector: "Data & Analytics Consulting",
-    description: "Advanced analytics and AI consulting firm helping enterprises build data-driven decision frameworks and predictive models.",
-    employees: 430,
-    founded: 2015,
-    hq: "San Francisco, CA",
-    clients: "Tech companies, Financial services, Retail",
-    revenueBase: 110,
-    ebitdaMargin: 0.25,
-    growthRate: 0.28,
-    strengths: ["AI/ML capabilities", "Proprietary data platform", "High-growth trajectory"],
-    tags: ["technology", "digital", "analytics", "revenue_synergies", "ebitda_growth", "market_expansion"],
-  },
-  {
-    name: "Vanguard Operations Consulting",
-    sector: "Operations & Supply Chain",
-    description: "Operations improvement and supply chain optimization firm with proven track record of delivering measurable cost reductions.",
-    employees: 890,
-    founded: 2005,
-    hq: "Dallas, TX",
-    clients: "Manufacturing, Logistics, Energy",
-    revenueBase: 210,
-    ebitdaMargin: 0.16,
-    growthRate: 0.08,
-    strengths: ["Lean/Six Sigma methodology", "Supply chain expertise", "Implementation capabilities"],
-    tags: ["operations", "cost_synergies", "supply_chain", "ebitda_growth", "cost_reduction"],
-  },
-  {
-    name: "NorthStar Financial Advisory",
-    sector: "Financial Advisory & Consulting",
-    description: "Financial restructuring and performance improvement consultancy serving mid-market companies and PE-backed firms.",
-    employees: 320,
-    founded: 2010,
-    hq: "Boston, MA",
-    clients: "Private Equity, Mid-market companies, Distressed assets",
-    revenueBase: 95,
-    ebitdaMargin: 0.28,
-    growthRate: 0.10,
-    strengths: ["Financial restructuring", "PE value creation", "Interim management"],
-    tags: ["financial", "restructuring", "ebitda_growth", "cost_synergies", "pe_services"],
-  },
-  {
-    name: "Catalyst Change Management",
-    sector: "Change Management & Transformation",
-    description: "Boutique change management consultancy with proprietary methodology for large-scale organizational transformations.",
-    employees: 280,
-    founded: 2014,
-    hq: "Atlanta, GA",
-    clients: "Large enterprises, Government agencies",
-    revenueBase: 72,
-    ebitdaMargin: 0.20,
-    growthRate: 0.18,
-    strengths: ["Proprietary change methodology", "Government sector access", "Training capabilities"],
-    tags: ["change_management", "transformation", "revenue_synergies", "market_expansion", "government"],
-  },
-  {
-    name: "Pinnacle IT Consulting",
-    sector: "Technology & IT Consulting",
-    description: "IT strategy and implementation consultancy specializing in cloud migration, cybersecurity, and enterprise architecture.",
-    employees: 1500,
-    founded: 2003,
-    hq: "Seattle, WA",
-    clients: "Enterprise, Healthcare, Financial services",
-    revenueBase: 380,
-    ebitdaMargin: 0.15,
-    growthRate: 0.20,
-    strengths: ["Cloud migration practice", "Cybersecurity capabilities", "Large delivery team"],
-    tags: ["technology", "digital", "cloud", "revenue_synergies", "market_expansion", "ebitda_growth"],
-  },
-  {
-    name: "Bridgewater Risk Advisory",
-    sector: "Risk & Compliance Consulting",
-    description: "Risk management and regulatory compliance consultancy serving financial institutions and healthcare organizations.",
-    employees: 520,
-    founded: 2009,
-    hq: "Charlotte, NC",
-    clients: "Banks, Insurance companies, Healthcare providers",
-    revenueBase: 165,
-    ebitdaMargin: 0.24,
-    growthRate: 0.14,
-    strengths: ["Regulatory expertise", "Risk analytics platform", "Deep financial services relationships"],
-    tags: ["risk", "compliance", "financial", "cost_synergies", "regulatory"],
-  },
-  {
-    name: "Horizon Sustainability Consulting",
-    sector: "ESG & Sustainability",
-    description: "ESG strategy and sustainability consulting firm helping organizations meet regulatory requirements and build sustainable practices.",
-    employees: 190,
-    founded: 2017,
-    hq: "Denver, CO",
-    clients: "Energy companies, Consumer goods, Asset managers",
-    revenueBase: 48,
-    ebitdaMargin: 0.19,
-    growthRate: 0.35,
-    strengths: ["ESG reporting frameworks", "Carbon accounting", "Fastest-growing segment"],
-    tags: ["esg", "sustainability", "market_expansion", "revenue_synergies", "ebitda_growth"],
-  },
-  {
-    name: "Granite Healthcare Advisors",
-    sector: "Healthcare Consulting",
-    description: "Healthcare management consulting firm specializing in revenue cycle optimization, clinical operations, and value-based care.",
-    employees: 740,
-    founded: 2007,
-    hq: "Nashville, TN",
-    clients: "Hospital systems, Physician groups, Health plans",
-    revenueBase: 195,
-    ebitdaMargin: 0.21,
-    growthRate: 0.16,
-    strengths: ["Revenue cycle expertise", "Clinical operations", "Value-based care models"],
-    tags: ["healthcare", "operations", "revenue_synergies", "ebitda_growth", "cost_synergies"],
-  },
-  {
-    name: "Sterling Pricing & Revenue Management",
-    sector: "Pricing & Commercial Strategy",
-    description: "Pricing strategy and revenue management consultancy delivering margin improvement through commercial excellence programs.",
-    employees: 260,
-    founded: 2013,
-    hq: "Philadelphia, PA",
-    clients: "B2B industrials, SaaS companies, Distributors",
-    revenueBase: 78,
-    ebitdaMargin: 0.26,
-    growthRate: 0.22,
-    strengths: ["Pricing analytics", "Commercial excellence", "Rapid margin improvement"],
-    tags: ["pricing", "revenue_synergies", "ebitda_growth", "commercial", "margin_improvement"],
-  },
-  {
-    name: "Atlas Global Consulting",
-    sector: "International Strategy",
-    description: "International expansion and market entry consultancy with offices across 12 countries and deep local market knowledge.",
-    employees: 980,
-    founded: 2006,
-    hq: "Washington, DC",
-    clients: "Multinationals, Government trade agencies",
-    revenueBase: 245,
-    ebitdaMargin: 0.14,
-    growthRate: 0.09,
-    strengths: ["Global presence", "Market entry expertise", "Government relationships"],
-    tags: ["international", "market_expansion", "strategy", "government", "revenue_synergies"],
-  },
-  {
-    name: "Ember Digital Solutions",
-    sector: "Digital & Marketing Consulting",
-    description: "Digital marketing strategy and customer experience consultancy combining management consulting rigor with creative capabilities.",
-    employees: 410,
-    founded: 2016,
-    hq: "Austin, TX",
-    clients: "Consumer brands, Retail, D2C companies",
-    revenueBase: 98,
-    ebitdaMargin: 0.17,
-    growthRate: 0.30,
-    strengths: ["Customer experience design", "Marketing analytics", "Creative + strategy hybrid"],
-    tags: ["digital", "marketing", "revenue_synergies", "market_expansion", "ebitda_growth"],
-  },
-  {
-    name: "Redwood Implementation Partners",
-    sector: "Implementation & Program Management",
-    description: "Hands-on implementation and program management consultancy focused on executing complex transformation programs.",
-    employees: 1100,
-    founded: 2004,
-    hq: "Minneapolis, MN",
-    clients: "Fortune 1000, PE portfolio companies",
-    revenueBase: 310,
-    ebitdaMargin: 0.13,
-    growthRate: 0.07,
-    strengths: ["Implementation track record", "Large bench strength", "PE relationships"],
-    tags: ["implementation", "operations", "cost_synergies", "cost_reduction", "pe_services"],
-  },
-  {
-    name: "Summit Talent & Leadership",
-    sector: "Executive Search & Leadership",
-    description: "Executive search and leadership development consultancy with proprietary assessment methodology and C-suite network.",
-    employees: 180,
-    founded: 2011,
-    hq: "Los Angeles, CA",
-    clients: "Boards, C-suite, PE operating partners",
-    revenueBase: 55,
-    ebitdaMargin: 0.30,
-    growthRate: 0.13,
-    strengths: ["C-suite network", "Assessment methodology", "Board advisory"],
-    tags: ["talent", "leadership", "hr", "revenue_synergies", "pe_services"],
-  },
-];
+// ============================================================
+// INDUSTRY DATABASE — covers 15+ sectors with financial profiles
+// ============================================================
 
-const OBJECTIVE_TAG_MAP = {
-  "Increase EBITDA": ["ebitda_growth", "margin_improvement", "cost_reduction"],
-  "Cost Synergies": ["cost_synergies", "cost_reduction", "operations"],
-  "Revenue Synergies": ["revenue_synergies", "market_expansion", "commercial"],
-  "Digital Transformation": ["digital", "technology", "analytics"],
-  "Market Expansion": ["market_expansion", "international", "revenue_synergies"],
-  "Talent Acquisition": ["talent", "hr", "leadership"],
-  "Technology Capabilities": ["technology", "digital", "cloud", "analytics"],
-  "Operational Excellence": ["operations", "cost_reduction", "implementation"],
-  "Regulatory/Compliance": ["risk", "compliance", "regulatory"],
-  "ESG/Sustainability": ["esg", "sustainability"],
-  "Healthcare Specialization": ["healthcare", "operations"],
-  "PE Services Enhancement": ["pe_services", "financial", "restructuring"],
+const INDUSTRY_PROFILES = {
+  "Technology": {
+    cogsRatio: 0.35, daRatio: 0.05, debtRatio: 0.10,
+    subsectors: ["Enterprise Software", "Cybersecurity", "Cloud Infrastructure", "AI & Machine Learning", "Data Analytics", "IT Services", "Fintech", "Edtech", "Healthtech", "IoT & Hardware"],
+    namePatterns: ["Systems", "Technologies", "Labs", "Digital", "Software", "Solutions", "Analytics", "Networks", "Dynamics", "Logic"],
+    clientTypes: ["Enterprise", "SMBs", "Financial institutions", "Healthcare providers", "Government"],
+  },
+  "Healthcare": {
+    cogsRatio: 0.50, daRatio: 0.04, debtRatio: 0.20,
+    subsectors: ["Pharmaceuticals", "Medical Devices", "Healthcare Services", "Biotech", "Diagnostics", "Telehealth", "Clinical Research", "Health IT", "Home Health", "Specialty Pharmacy"],
+    namePatterns: ["Health", "Medical", "Therapeutics", "Biosciences", "Pharma", "Care", "Life Sciences", "Diagnostics", "Genomics", "Wellness"],
+    clientTypes: ["Hospital systems", "Physician groups", "Health plans", "Patients", "Research institutions"],
+  },
+  "Financial Services": {
+    cogsRatio: 0.30, daRatio: 0.03, debtRatio: 0.25,
+    subsectors: ["Asset Management", "Insurance", "Banking", "Wealth Management", "Payments", "Lending", "Risk & Compliance", "Capital Markets", "Financial Advisory", "Regtech"],
+    namePatterns: ["Capital", "Financial", "Partners", "Advisors", "Wealth", "Securities", "Holdings", "Asset Management", "Bancorp", "Trust"],
+    clientTypes: ["Institutional investors", "High-net-worth individuals", "Corporations", "Banks", "Insurance companies"],
+  },
+  "Consumer & Retail": {
+    cogsRatio: 0.55, daRatio: 0.04, debtRatio: 0.18,
+    subsectors: ["E-commerce", "Food & Beverage", "Apparel", "Consumer Electronics", "Beauty & Personal Care", "Home Goods", "Specialty Retail", "D2C Brands", "Luxury Goods", "Pet Care"],
+    namePatterns: ["Brands", "Commerce", "Goods", "Market", "Retail", "Trading", "Consumer", "Lifestyle", "Collections", "Supply"],
+    clientTypes: ["Consumers", "Retailers", "Distributors", "Wholesale partners", "Online marketplaces"],
+  },
+  "Manufacturing & Industrials": {
+    cogsRatio: 0.60, daRatio: 0.06, debtRatio: 0.22,
+    subsectors: ["Aerospace & Defense", "Automotive", "Chemicals", "Industrial Equipment", "Electronics Manufacturing", "Building Materials", "Packaging", "Precision Engineering", "Clean Energy Equipment", "Robotics"],
+    namePatterns: ["Industries", "Manufacturing", "Engineering", "Precision", "Materials", "Components", "Systems", "Dynamics", "Works", "Fabrication"],
+    clientTypes: ["OEMs", "Government/defense", "Construction firms", "Energy companies", "Automotive manufacturers"],
+  },
+  "Energy & Utilities": {
+    cogsRatio: 0.55, daRatio: 0.08, debtRatio: 0.30,
+    subsectors: ["Renewable Energy", "Oil & Gas Services", "Utilities", "Energy Storage", "Solar", "Wind", "Grid Infrastructure", "Energy Trading", "Carbon Management", "Nuclear Services"],
+    namePatterns: ["Energy", "Power", "Resources", "Renewables", "Utilities", "Grid", "Solar", "Clean", "Sustainable", "Generation"],
+    clientTypes: ["Utilities", "Industrial consumers", "Government", "Commercial buildings", "Municipalities"],
+  },
+  "Professional Services": {
+    cogsRatio: 0.45, daRatio: 0.03, debtRatio: 0.12,
+    subsectors: ["Management Consulting", "Legal Services", "Accounting", "HR Consulting", "IT Consulting", "Strategy Advisory", "Outsourcing", "Staffing", "Engineering Services", "Design & Architecture"],
+    namePatterns: ["Partners", "Advisors", "Group", "Consulting", "Associates", "Advisory", "Services", "Solutions", "Management", "International"],
+    clientTypes: ["Fortune 500", "Mid-market companies", "Private equity", "Government agencies", "Startups"],
+  },
+  "Media & Entertainment": {
+    cogsRatio: 0.40, daRatio: 0.05, debtRatio: 0.15,
+    subsectors: ["Digital Media", "Streaming", "Gaming", "Advertising", "Publishing", "Music", "Sports & Events", "Content Production", "Social Media", "AR/VR"],
+    namePatterns: ["Media", "Entertainment", "Studios", "Digital", "Creative", "Content", "Productions", "Interactive", "Broadcasting", "Networks"],
+    clientTypes: ["Advertisers", "Consumers", "Brands", "Broadcasters", "Content creators"],
+  },
+  "Real Estate": {
+    cogsRatio: 0.45, daRatio: 0.07, debtRatio: 0.35,
+    subsectors: ["Commercial Real Estate", "Residential Development", "REITs", "Property Management", "PropTech", "Construction", "Real Estate Brokerage", "Senior Living", "Industrial Logistics", "Data Centers"],
+    namePatterns: ["Properties", "Realty", "Development", "Estates", "Land", "Capital", "Residential", "Commercial", "Investments", "Holdings"],
+    clientTypes: ["Tenants", "Investors", "Homebuyers", "Commercial occupiers", "Institutional investors"],
+  },
+  "Transportation & Logistics": {
+    cogsRatio: 0.58, daRatio: 0.07, debtRatio: 0.25,
+    subsectors: ["Freight & Shipping", "Last-Mile Delivery", "Supply Chain Tech", "Warehousing", "Fleet Management", "Rail", "Aviation Services", "Maritime", "3PL", "Cold Chain"],
+    namePatterns: ["Logistics", "Transport", "Freight", "Shipping", "Express", "Distribution", "Supply Chain", "Fleet", "Carriers", "Global"],
+    clientTypes: ["E-commerce companies", "Manufacturers", "Retailers", "Government", "Importers/exporters"],
+  },
+  "Education": {
+    cogsRatio: 0.48, daRatio: 0.04, debtRatio: 0.15,
+    subsectors: ["Edtech", "Corporate Training", "K-12", "Higher Education", "Online Learning", "Test Prep", "Language Learning", "STEM Education", "Vocational Training", "Publishing"],
+    namePatterns: ["Education", "Learning", "Academy", "Institute", "Scholars", "Knowledge", "Training", "Prep", "Curriculum", "Campus"],
+    clientTypes: ["Students", "Schools", "Universities", "Corporations", "Government education departments"],
+  },
+  "Agriculture & Food": {
+    cogsRatio: 0.62, daRatio: 0.05, debtRatio: 0.20,
+    subsectors: ["AgTech", "Food Processing", "Crop Sciences", "Animal Health", "Organic & Natural", "Aquaculture", "Precision Agriculture", "Food Distribution", "Ingredients", "Cold Storage"],
+    namePatterns: ["Foods", "Agricultural", "Farms", "Harvest", "Nutrition", "Sciences", "Agri", "Natural", "Organic", "Crop"],
+    clientTypes: ["Farmers", "Food manufacturers", "Restaurants", "Grocery retailers", "Government"],
+  },
+  "Telecommunications": {
+    cogsRatio: 0.42, daRatio: 0.09, debtRatio: 0.28,
+    subsectors: ["5G Infrastructure", "Broadband", "Satellite", "Unified Communications", "Network Security", "Wireless", "Fiber Optics", "Tower Infrastructure", "VoIP", "SD-WAN"],
+    namePatterns: ["Communications", "Telecom", "Networks", "Wireless", "Connect", "Broadband", "Signal", "Link", "Fiber", "Spectrum"],
+    clientTypes: ["Enterprises", "Consumers", "Government", "Carriers", "ISPs"],
+  },
+  "Aerospace & Defense": {
+    cogsRatio: 0.58, daRatio: 0.06, debtRatio: 0.20,
+    subsectors: ["Defense Electronics", "Space Systems", "UAVs/Drones", "Satellite", "Military Vehicles", "Missile Systems", "Avionics", "Maintenance & Overhaul", "Cybersecurity", "Intelligence"],
+    namePatterns: ["Aerospace", "Defense", "Systems", "Dynamics", "Technologies", "Aviation", "Space", "Tactical", "Precision", "Integrated"],
+    clientTypes: ["Department of Defense", "NATO allies", "Commercial airlines", "Space agencies", "Intelligence community"],
+  },
 };
 
+const FIRST_NAMES = [
+  "Meridian", "Apex", "ClearPoint", "Vanguard", "NorthStar", "Catalyst", "Pinnacle",
+  "Bridgewater", "Horizon", "Granite", "Sterling", "Atlas", "Ember", "Redwood", "Summit",
+  "Beacon", "Crestline", "Ironwood", "Bluefin", "Silverline", "Orion", "Nexus", "Vertex",
+  "Keystone", "Trident", "Evergreen", "Onyx", "Cobalt", "Sierra", "Falcon", "Prism",
+  "Helix", "Quantum", "Aegis", "Zenith", "Stratos", "Pacific", "Nordic", "Trellis",
+  "Cascade", "Voyager", "Titan", "Phoenix", "Sapphire", "Aspen", "Forge", "Citadel",
+  "Eclipse", "Aurion", "Maverick",
+];
+
+const HQ_LOCATIONS = [
+  "New York, NY", "San Francisco, CA", "Chicago, IL", "Boston, MA", "Austin, TX",
+  "Seattle, WA", "Los Angeles, CA", "Dallas, TX", "Atlanta, GA", "Denver, CO",
+  "Charlotte, NC", "Philadelphia, PA", "Nashville, TN", "Minneapolis, MN",
+  "Washington, DC", "Miami, FL", "Portland, OR", "San Diego, CA", "Detroit, MI",
+  "Houston, TX", "Phoenix, AZ", "Raleigh, NC", "Pittsburgh, PA", "Salt Lake City, UT",
+];
+
+// Seeded pseudo-random for deterministic results per search
+function seededRandom(seed) {
+  let s = seed;
+  return function () {
+    s = (s * 1664525 + 1013904223) & 0xffffffff;
+    return (s >>> 0) / 0xffffffff;
+  };
+}
+
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function pickRandom(arr, rng) {
+  return arr[Math.floor(rng() * arr.length)];
+}
+
+function generateCompanyForIndustry(industry, profile, idx, budget, rng) {
+  const firstName = FIRST_NAMES[(idx * 7 + Math.floor(rng() * FIRST_NAMES.length)) % FIRST_NAMES.length];
+  const nameSuffix = pickRandom(profile.namePatterns, rng);
+  const name = `${firstName} ${nameSuffix}`;
+  const subsector = profile.subsectors[(idx * 3 + Math.floor(rng() * profile.subsectors.length)) % profile.subsectors.length];
+
+  // Generate financials scaled to budget
+  const budgetFraction = 0.15 + rng() * 0.55;
+  const maxRevenueForBudget = budget * budgetFraction;
+  const revenueBase = Math.max(20, Math.round(maxRevenueForBudget / (2.5 + rng() * 3)));
+
+  const ebitdaMargin = 0.08 + rng() * 0.24;
+  const growthRate = 0.04 + rng() * 0.30;
+  const employees = Math.round(revenueBase * (1.5 + rng() * 4));
+  const founded = 1990 + Math.floor(rng() * 34);
+  const hq = HQ_LOCATIONS[(idx * 5 + Math.floor(rng() * HQ_LOCATIONS.length)) % HQ_LOCATIONS.length];
+
+  const clientPool = profile.clientTypes;
+  const clients = [
+    clientPool[Math.floor(rng() * clientPool.length)],
+    clientPool[Math.floor(rng() * clientPool.length)],
+  ].filter((v, i, a) => a.indexOf(v) === i).join(", ");
+
+  const strengthPool = [
+    `Strong ${subsector} expertise`,
+    `Proprietary technology platform`,
+    `Loyal client base with high retention`,
+    `Scalable business model`,
+    `Experienced management team`,
+    `Growing recurring revenue stream`,
+    `Leading market position in niche`,
+    `Attractive margin profile`,
+    `Proven M&A integration track record`,
+    `Geographic diversification`,
+    `Regulatory moat / licensing advantages`,
+    `Deep industry relationships`,
+    `IP portfolio / patents`,
+    `Data and analytics capabilities`,
+    `Strong brand recognition`,
+  ];
+  const strengths = [];
+  for (let i = 0; i < 3; i++) {
+    const s = strengthPool[(idx * 4 + i * 3 + Math.floor(rng() * strengthPool.length)) % strengthPool.length];
+    if (!strengths.includes(s)) strengths.push(s);
+  }
+
+  const allTags = [
+    "ebitda_growth", "cost_synergies", "revenue_synergies", "digital",
+    "technology", "market_expansion", "operations", "cost_reduction",
+    "talent", "compliance", "sustainability", "innovation",
+    "vertical_integration", "geographic_expansion", "ip_assets",
+  ];
+  const tags = [];
+  for (let i = 0; i < 5; i++) {
+    const t = allTags[(idx * 3 + i * 2 + Math.floor(rng() * allTags.length)) % allTags.length];
+    if (!tags.includes(t)) tags.push(t);
+  }
+
+  const descriptions = [
+    `Leading ${subsector.toLowerCase()} company providing innovative solutions to ${clients.toLowerCase()}. Known for strong operational performance and consistent growth trajectory.`,
+    `Established ${subsector.toLowerCase()} firm with ${employees} employees and a proven track record of delivering value across the ${industry.toLowerCase()} sector.`,
+    `High-growth ${subsector.toLowerCase()} platform serving ${clients.toLowerCase()} with proprietary capabilities and a scalable business model.`,
+    `Mid-market ${subsector.toLowerCase()} company with strong client relationships, attractive margins, and significant expansion potential in adjacent markets.`,
+    `Specialized ${subsector.toLowerCase()} provider combining deep domain expertise with technology-driven delivery. Strong pipeline and expanding market presence.`,
+  ];
+
+  return {
+    name,
+    sector: subsector,
+    industry,
+    description: descriptions[idx % descriptions.length],
+    employees,
+    founded,
+    hq,
+    clients,
+    revenueBase,
+    ebitdaMargin: Math.round(ebitdaMargin * 1000) / 1000,
+    growthRate: Math.round(growthRate * 1000) / 1000,
+    strengths,
+    tags,
+  };
+}
+
+// ============================================================
+// OBJECTIVES — universal across all industries
+// ============================================================
+
+const OBJECTIVE_TAG_MAP = {
+  "Increase EBITDA": ["ebitda_growth", "cost_reduction", "operations"],
+  "Cost Synergies": ["cost_synergies", "cost_reduction", "operations"],
+  "Revenue Synergies": ["revenue_synergies", "market_expansion", "geographic_expansion"],
+  "Digital Transformation": ["digital", "technology", "innovation"],
+  "Market Expansion": ["market_expansion", "geographic_expansion", "revenue_synergies"],
+  "Talent Acquisition": ["talent", "operations", "innovation"],
+  "Technology Capabilities": ["technology", "digital", "ip_assets", "innovation"],
+  "Operational Excellence": ["operations", "cost_reduction", "cost_synergies"],
+  "Regulatory/Compliance": ["compliance", "operations"],
+  "ESG/Sustainability": ["sustainability", "compliance"],
+  "Vertical Integration": ["vertical_integration", "cost_synergies", "operations"],
+  "IP & Innovation": ["ip_assets", "innovation", "technology"],
+};
+
+// ============================================================
+// SCORING, FINANCIALS, SYNERGIES, RATIONALE
+// ============================================================
+
 function scoreTarget(target, objectives, budget) {
-  const budgetM = budget;
   const estimatedEV = target.revenueBase * (2.0 + target.ebitdaMargin * 8);
-  if (estimatedEV > budgetM * 1.3) return -1;
+  if (estimatedEV > budget * 1.3) return -1;
 
   let relevanceScore = 0;
   const objectiveTags = objectives.flatMap((obj) => OBJECTIVE_TAG_MAP[obj] || []);
@@ -240,7 +247,7 @@ function scoreTarget(target, objectives, budget) {
   relevanceScore += target.ebitdaMargin * 30;
   relevanceScore += target.growthRate * 20;
 
-  const budgetFit = 1 - Math.abs(estimatedEV - budgetM * 0.6) / budgetM;
+  const budgetFit = 1 - Math.abs(estimatedEV - budget * 0.6) / budget;
   relevanceScore += Math.max(0, budgetFit * 15);
 
   return relevanceScore;
@@ -251,23 +258,24 @@ function generateEVMultiple(target) {
   return Math.round(baseMultiple * 10) / 10;
 }
 
-function generateFinancials(target, budget) {
+function generateFinancials(target) {
+  const profile = INDUSTRY_PROFILES[target.industry] || INDUSTRY_PROFILES["Technology"];
   const revenue = target.revenueBase;
   const ebitda = Math.round(revenue * target.ebitdaMargin);
   const evMultiple = generateEVMultiple(target);
   const enterpriseValue = Math.round(ebitda * evMultiple);
-  const netDebt = Math.round(revenue * 0.15);
+  const netDebt = Math.round(revenue * profile.debtRatio);
   const equityValue = enterpriseValue - netDebt;
 
-  const cogs = Math.round(revenue * 0.45);
+  const cogs = Math.round(revenue * profile.cogsRatio);
   const grossProfit = revenue - cogs;
-  const sgna = Math.round(revenue * (1 - target.ebitdaMargin - 0.45) * 0.6);
-  const otherOpex = grossProfit - sgna - ebitda;
-  const da = Math.round(revenue * 0.03);
+  const sgna = Math.round(revenue * (1 - target.ebitdaMargin - profile.cogsRatio) * 0.6);
+  const otherOpex = Math.max(0, grossProfit - sgna - ebitda);
+  const da = Math.round(revenue * profile.daRatio);
   const ebit = ebitda - da;
   const interestExpense = Math.round(netDebt * 0.05);
   const ebt = ebit - interestExpense;
-  const taxes = Math.round(ebt * 0.25);
+  const taxes = Math.round(Math.max(0, ebt) * 0.25);
   const netIncome = ebt - taxes;
 
   const projections = [];
@@ -288,39 +296,24 @@ function generateFinancials(target, budget) {
   }
 
   return {
-    revenue,
-    cogs,
-    grossProfit,
+    revenue, cogs, grossProfit,
     grossMargin: grossProfit / revenue,
-    sgna,
-    otherOpex,
-    ebitda,
+    sgna, otherOpex, ebitda,
     ebitdaMargin: target.ebitdaMargin,
-    da,
-    ebit,
-    interestExpense,
-    ebt,
-    taxes,
-    netIncome,
-    netDebt,
-    enterpriseValue,
-    equityValue,
-    evMultiple,
+    da, ebit, interestExpense, ebt, taxes, netIncome,
+    netDebt, enterpriseValue, equityValue, evMultiple,
     evRevenue: Math.round((enterpriseValue / revenue) * 10) / 10,
     projections,
     growthRate: target.growthRate,
   };
 }
 
-function generateSynergies(target, objectives, budget) {
+function generateSynergies(target, objectives) {
   const revenue = target.revenueBase;
   const synergies = {
-    costSynergies: [],
-    revenueSynergies: [],
-    totalCostSynergy: 0,
-    totalRevenueSynergy: 0,
-    integrationCost: 0,
-    timeToRealize: "",
+    costSynergies: [], revenueSynergies: [],
+    totalCostSynergy: 0, totalRevenueSynergy: 0,
+    integrationCost: 0, timeToRealize: "",
   };
 
   if (objectives.includes("Cost Synergies") || objectives.includes("Operational Excellence")) {
@@ -341,13 +334,19 @@ function generateSynergies(target, objectives, budget) {
     synergies.revenueSynergies.push(
       { item: "Cross-Selling to Existing Clients", value: Math.round(revenue * 0.08), timeline: "Year 1-2" },
       { item: "New Market Access", value: Math.round(revenue * 0.05), timeline: "Year 2-3" },
-      { item: "Combined Service Offerings", value: Math.round(revenue * 0.04), timeline: "Year 2" },
+      { item: "Combined Product/Service Offerings", value: Math.round(revenue * 0.04), timeline: "Year 2" },
       { item: "Brand & Reputation Leverage", value: Math.round(revenue * 0.02), timeline: "Year 1-3" }
     );
   } else {
     synergies.revenueSynergies.push(
       { item: "Cross-Selling to Existing Clients", value: Math.round(revenue * 0.05), timeline: "Year 1-2" },
-      { item: "Combined Service Offerings", value: Math.round(revenue * 0.03), timeline: "Year 2" }
+      { item: "Combined Product/Service Offerings", value: Math.round(revenue * 0.03), timeline: "Year 2" }
+    );
+  }
+
+  if (objectives.includes("Vertical Integration")) {
+    synergies.costSynergies.push(
+      { item: "Supply Chain Vertical Integration", value: Math.round(revenue * 0.025), timeline: "Year 2-3" }
     );
   }
 
@@ -359,12 +358,12 @@ function generateSynergies(target, objectives, budget) {
   return synergies;
 }
 
-function generateRationale(target, objectives) {
+function generateRationale(target, objectives, acquirerName) {
   const reasons = [];
 
-  if (objectives.includes("Increase EBITDA") && target.ebitdaMargin > 0.18) {
+  if (objectives.includes("Increase EBITDA") && target.ebitdaMargin > 0.15) {
     reasons.push(
-      `Strong EBITDA margin of ${(target.ebitdaMargin * 100).toFixed(0)}% provides immediate earnings accretion and demonstrates pricing power in the market.`
+      `Strong EBITDA margin of ${(target.ebitdaMargin * 100).toFixed(0)}% provides immediate earnings accretion and demonstrates pricing power within the ${target.sector} segment.`
     );
   }
   if (objectives.includes("Increase EBITDA") && target.growthRate > 0.15) {
@@ -374,17 +373,17 @@ function generateRationale(target, objectives) {
   }
   if (objectives.includes("Cost Synergies")) {
     reasons.push(
-      `Overlapping G&A functions and technology platforms present clear cost synergy opportunities estimated at 4-7% of combined revenue.`
+      `Overlapping corporate functions and technology platforms present clear cost synergy opportunities estimated at 4-7% of combined revenue.`
     );
   }
   if (objectives.includes("Revenue Synergies")) {
     reasons.push(
-      `Complementary client base and service offerings create cross-selling opportunities, with estimated revenue synergies of 8-12% within 24 months.`
+      `Complementary client base and offerings create cross-selling opportunities with estimated revenue synergies of 8-12% within 24 months.`
     );
   }
   if (objectives.includes("Digital Transformation") && target.tags.includes("digital")) {
     reasons.push(
-      `Proprietary digital capabilities and analytics talent pool accelerate the acquirer's digital transformation agenda.`
+      `Proprietary digital capabilities and technical talent pool accelerate ${acquirerName}'s digital transformation agenda.`
     );
   }
   if (objectives.includes("Market Expansion") && target.tags.includes("market_expansion")) {
@@ -394,17 +393,27 @@ function generateRationale(target, objectives) {
   }
   if (objectives.includes("Talent Acquisition") && target.tags.includes("talent")) {
     reasons.push(
-      `Experienced consulting talent pool of ${target.employees} professionals addresses key capability gaps and reduces recruitment costs.`
+      `Experienced workforce of ${target.employees} professionals addresses key capability gaps and reduces recruitment costs.`
     );
   }
   if (objectives.includes("Technology Capabilities") && target.tags.includes("technology")) {
     reasons.push(
-      `Advanced technology capabilities, including proprietary platforms and tools, provide competitive differentiation and higher-margin service delivery.`
+      `Advanced technology capabilities and proprietary IP provide competitive differentiation and higher-margin delivery.`
+    );
+  }
+  if (objectives.includes("Vertical Integration") && target.tags.includes("vertical_integration")) {
+    reasons.push(
+      `Vertical integration opportunity reduces supply chain dependency and captures additional margin along the value chain.`
+    );
+  }
+  if (objectives.includes("IP & Innovation") && target.tags.includes("ip_assets")) {
+    reasons.push(
+      `Valuable intellectual property portfolio and R&D pipeline provide long-term competitive advantages.`
     );
   }
 
   reasons.push(
-    `${target.name} has demonstrated consistent performance with ${target.employees} employees and a strong client roster including ${target.clients}.`
+    `${target.name} has demonstrated consistent performance in ${target.sector} with ${target.employees} employees and clients including ${target.clients}.`
   );
 
   if (target.growthRate > 0.2) {
@@ -416,26 +425,42 @@ function generateRationale(target, objectives) {
   return reasons;
 }
 
-export function generateTargets(acquirerName, budget, objectives) {
-  const scored = CONSULTING_TARGETS.map((target) => ({
-    ...target,
-    score: scoreTarget(target, objectives, budget),
-  }))
+// ============================================================
+// MAIN EXPORTS
+// ============================================================
+
+export function generateTargets(acquirerName, budget, objectives, industry) {
+  const profile = INDUSTRY_PROFILES[industry];
+  if (!profile) return [];
+
+  const seed = hashString(acquirerName + industry + budget.toString() + objectives.join(","));
+  const rng = seededRandom(seed);
+
+  // Generate a pool of 12 candidates, score, and return top 5
+  const pool = [];
+  for (let i = 0; i < 12; i++) {
+    pool.push(generateCompanyForIndustry(industry, profile, i, budget, rng));
+  }
+
+  const scored = pool
+    .map((target) => ({ ...target, score: scoreTarget(target, objectives, budget) }))
     .filter((t) => t.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
 
+  // Backfill if fewer than 5
   if (scored.length < 5) {
-    const remaining = CONSULTING_TARGETS.filter((t) => !scored.find((s) => s.name === t.name))
+    const remaining = pool
+      .filter((t) => !scored.find((s) => s.name === t.name))
       .sort((a, b) => b.ebitdaMargin * b.growthRate - a.ebitdaMargin * a.growthRate)
       .slice(0, 5 - scored.length);
     scored.push(...remaining.map((t) => ({ ...t, score: 5 })));
   }
 
   return scored.map((target) => {
-    const financials = generateFinancials(target, budget);
-    const synergies = generateSynergies(target, objectives, budget);
-    const rationale = generateRationale(target, objectives);
+    const financials = generateFinancials(target);
+    const synergies = generateSynergies(target, objectives);
+    const rationale = generateRationale(target, objectives, acquirerName);
 
     return {
       ...target,
@@ -546,3 +571,4 @@ function generateSensitivity(f, baseWacc, baseTermGrowth) {
 }
 
 export const AVAILABLE_OBJECTIVES = Object.keys(OBJECTIVE_TAG_MAP);
+export const AVAILABLE_INDUSTRIES = Object.keys(INDUSTRY_PROFILES);

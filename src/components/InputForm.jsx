@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { AVAILABLE_OBJECTIVES } from "../utils/targetGenerator";
+import { AVAILABLE_OBJECTIVES, AVAILABLE_INDUSTRIES } from "../utils/targetGenerator";
 
 export default function InputForm({ onSubmit, isLoading }) {
   const [acquirerName, setAcquirerName] = useState("");
+  const [industry, setIndustry] = useState("");
   const [budget, setBudget] = useState("");
   const [selectedObjectives, setSelectedObjectives] = useState([]);
 
@@ -14,15 +15,16 @@ export default function InputForm({ onSubmit, isLoading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!acquirerName || !budget || selectedObjectives.length === 0) return;
+    if (!acquirerName || !industry || !budget || selectedObjectives.length === 0) return;
     onSubmit({
       acquirerName,
+      industry,
       budget: parseFloat(budget),
       objectives: selectedObjectives,
     });
   };
 
-  const isValid = acquirerName && budget && selectedObjectives.length > 0;
+  const isValid = acquirerName && industry && budget && selectedObjectives.length > 0;
 
   return (
     <form className="input-form" onSubmit={handleSubmit}>
@@ -30,7 +32,7 @@ export default function InputForm({ onSubmit, isLoading }) {
         <h2>Acquisition Screening Parameters</h2>
         <p className="form-subtitle">
           Define your acquisition criteria to generate a targeted list of
-          potential management consulting acquisition opportunities.
+          potential acquisition opportunities across any industry.
         </p>
       </div>
 
@@ -42,7 +44,7 @@ export default function InputForm({ onSubmit, isLoading }) {
             type="text"
             value={acquirerName}
             onChange={(e) => setAcquirerName(e.target.value)}
-            placeholder="e.g., McKinsey & Company"
+            placeholder="e.g., Acme Corporation"
           />
         </div>
 
@@ -60,6 +62,22 @@ export default function InputForm({ onSubmit, isLoading }) {
             />
             <span className="input-suffix">M</span>
           </div>
+        </div>
+      </div>
+
+      <div className="form-group industry-group">
+        <label>Target Industry</label>
+        <div className="industry-grid">
+          {AVAILABLE_INDUSTRIES.map((ind) => (
+            <button
+              key={ind}
+              type="button"
+              className={`industry-chip ${industry === ind ? "selected" : ""}`}
+              onClick={() => setIndustry(ind)}
+            >
+              {ind}
+            </button>
+          ))}
         </div>
       </div>
 

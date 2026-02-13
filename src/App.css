@@ -186,6 +186,39 @@
   box-shadow: none;
 }
 
+.industry-group {
+  margin-bottom: 1.5rem;
+}
+
+.industry-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.industry-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.industry-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.industry-chip.selected {
+  background: rgba(212, 168, 67, 0.15);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
 .objectives-group {
   margin-bottom: 2rem;
 }
